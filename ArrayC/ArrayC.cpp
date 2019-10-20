@@ -1,21 +1,68 @@
-﻿// ArrayC.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include "pch.h"
+﻿#include "pch.h"
 #include <iostream>
+
+using namespace std;
+
+void ssort(int** arr, int n);
+void swap(int *a, int *b);
+void show(int **arr, int n);
+
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	const int size = 5;
+	int arrUnsorted[size] = { 5,4,1,2,3 };
+	int *arr[size];
+
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = &arrUnsorted[i];
+	}
+
+	show(arr, size);
+
+	ssort(arr, size);
+
+	show(arr, size);
+
+	system("pause");
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+void ssort(int **arr, int n)
+{
+	int* c;
+	int* b;
+	bool flag = true;
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
+	do
+	{
+		flag = false;
+		for (int i = 0; i < n - 1; i++)
+		{
+			if (*arr[i] > *(arr[i + 1]))
+			{
+				flag = true;
+				swap(arr[i], arr[i + 1]);
+			}
+		}
+	} while (flag);
+
+	cout << endl;
+}
+
+void swap(int *a, int *b)
+{
+	int c = *a;
+	*a = *b;
+	*b = c;
+}
+
+void show(int **arr, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << *arr[i] << " ";
+	}
+
+	cout << endl;
+}
