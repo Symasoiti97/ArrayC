@@ -3,21 +3,15 @@
 
 using namespace std;
 
-void ssort(int** arr, int n);
+void ssort(int* arr, int n);
 void swap(int *a, int *b);
-void show(int **arr, int n);
+void show(int *arr, int n);
 
 
 int main()
 {
 	const int size = 5;
-	int arrUnsorted[size] = { 5,4,1,2,3 };
-	int *arr[size];
-
-	for (int i = 0; i < size; i++)
-	{
-		arr[i] = &arrUnsorted[i];
-	}
+	int *arr = new int[size]{ 5,4,1,2,3 };
 
 	show(arr, size);
 
@@ -28,7 +22,7 @@ int main()
 	system("pause");
 }
 
-void ssort(int **arr, int n)
+void ssort(int *arr, int n)
 {
 	int* c;
 	int* b;
@@ -39,10 +33,10 @@ void ssort(int **arr, int n)
 		flag = false;
 		for (int i = 0; i < n - 1; i++)
 		{
-			if (*arr[i] > *(arr[i + 1]))
+			if (arr[i] > (arr[i + 1]))
 			{
 				flag = true;
-				swap(arr[i], arr[i + 1]);
+				swap(&arr[i], &arr[i + 1]);
 			}
 		}
 	} while (flag);
@@ -57,11 +51,11 @@ void swap(int *a, int *b)
 	*b = c;
 }
 
-void show(int **arr, int n)
+void show(int *arr, int n)
 {
 	for (int i = 0; i < n; i++)
 	{
-		cout << *arr[i] << " ";
+		cout << arr[i] << " ";
 	}
 
 	cout << endl;
